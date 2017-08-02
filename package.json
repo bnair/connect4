@@ -1,0 +1,22 @@
+{
+  "name": "connect4",
+  "version": "1.0.0",
+  "description": "Determine if a player has won the game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnair/connect4.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Bala Nair <bnairtm@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bnair/connect4/issues"
+  },
+  "homepage": "https://github.com/bnair/connect4#readme"
+}
