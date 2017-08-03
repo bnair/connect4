@@ -4,6 +4,8 @@
   "description": "Determine if a player has won the game.",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf node_modules/ && rm -rf reports/",
+    "prepare": "npm install && mkdir -p reports",
     "test": "mocha"
   },
   "repository": {
