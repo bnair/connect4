@@ -59,7 +59,7 @@ let isWinner = (board, vector) => {
 let play_bruteforce = (board, position) => {
   board.set(position, 1);
 
-  // check diagonals
+  // check diagonals, rows and columns
   var winner = [diagonals, rows, columns].reduce((acc, vector) => {
     var w = vector.reduce((inner_acc, inner_vector) => {
       if (!inner_acc.winner && isWinner(board, inner_vector)) {
@@ -69,14 +69,7 @@ let play_bruteforce = (board, position) => {
       return inner_acc;
     }, acc);
     return w;
-  }, {winner: false, vector: ''})
-  // var winner = diagonals.reduce((acc, diagonal) => {
-  //   if (!acc.winner && isWinner(board, diagonal)) {
-  //     acc.vector = diagonal;
-  //     acc.winner = true;
-  //   }
-  //   return acc;
-  // }, {winner: false, vector: ''});
+  }, {winner: false, vector: ''});
 
   return winner;
 }
