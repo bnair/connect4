@@ -7,7 +7,7 @@ describe('Connect4', () => {
   var board;
 
   // before each test create an empty board
-  before((done) => {
+  beforeEach((done) => {
     board = math.zeros(6,7);
     done();
   });
@@ -28,5 +28,25 @@ describe('Connect4', () => {
       expect(play.winner).to.be.true;
       done();
     })
+  });
+
+  describe('test horizontals', () => {
+    it('should return a winner when [0,0] to [0,3] are filled', (done) => {
+      board.set([0,0], 1);
+      board.set([0,1], 1);
+      board.set([0,2], 1);
+      let play = c4.play_bruteforce(board, [0,3]);
+      expect(play.winner).to.be.true;
+      done();
+    });
+
+    it('should return no winner when [0,0] to [0,2] and [0,4] are filled', (done) => {
+      board.set([0,0], 1);
+      board.set([0,1], 1);
+      board.set([0,2], 1);
+      let play = c4.play_bruteforce(board, [0,4]);
+      expect(play.winner).to.be.false;
+      done();
+    });
   });
 });

@@ -60,26 +60,25 @@ let play_bruteforce = (board, position) => {
   board.set(position, 1);
 
   // check diagonals
-  var winner = diagonals.reduce((acc, diagonal) => {
-    if (!acc.winner && isWinner(board, diagonal)) {
-      acc.vector = diagonal;
-      acc.winner = true;
-    }
-    return acc;
-  }, {winner: false, vector: ''});
+  var winner = [diagonals, rows, columns].reduce((acc, vector) => {
+    var w = vector.reduce((inner_acc, inner_vector) => {
+      if (!inner_acc.winner && isWinner(board, inner_vector)) {
+        inner_acc.vector = vector;
+        inner_acc.winner = true;
+      }
+      return inner_acc;
+    }, acc);
+    return w;
+  }, {winner: false, vector: ''})
+  // var winner = diagonals.reduce((acc, diagonal) => {
+  //   if (!acc.winner && isWinner(board, diagonal)) {
+  //     acc.vector = diagonal;
+  //     acc.winner = true;
+  //   }
+  //   return acc;
+  // }, {winner: false, vector: ''});
 
   return winner;
-// diagonals.forEach((vector) => {
-//   console.log(util.format('diag %s : %s', vector, isWinner(board, vector)));
-// });
-
-// rows.forEach((vector) => {
-//   console.log(util.format('row %s : %s', vector, isWinner(p1, vector)));
-// });
-
-// columns.forEach((vector) => {
-//   console.log(util.format('col %s : %s', vector, isWinner(p1, vector)));
-// });
 }
 
 module.exports = {
