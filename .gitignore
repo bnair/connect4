@@ -12,6 +12,7 @@ xunit.xml
 tmp/
 logs/
 reports/
+coverage/
 
 npm-debug.log
 node_modules/

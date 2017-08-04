@@ -4,9 +4,9 @@
   "description": "Determine if a player has won the game.",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf node_modules/ && rm -rf reports/",
+    "clean": "rm -rf node_modules/ && rm -rf reports/ && rm -rf coverage/",
     "prepare": "npm install && mkdir -p reports",
-    "test": "mocha"
+    "test": "NODE_ENV=test multi='spec=- xunit=reports/mocha-xunit.xml' istanbul cover _mocha -- -R mocha-multi test && istanbul check-coverage"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "mocha": "^3.5.0"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.0",
+    "mocha-multi": "^0.11.0"
   }
 }
