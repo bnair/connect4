@@ -63,4 +63,20 @@ describe('Connect4', () => {
       done();
     });
   });
+
+  describe('test verticals', () => {
+    it('should return a winner when [0,0] to [3,0] are filled', (done) => {
+      fill([[0,0],[1,0],[2,0]], 1);
+      let play = c4.play_bruteforce(board, [3,0]);
+      expect(play.winner).to.be.true;
+      done();
+    });
+
+    it('should return no winner when [0,0] to [2,0] and [4,0] are filled', (done) => {
+      fill([[0,0],[1,0],[2,0]], 1);
+      let play = c4.play_bruteforce(board, [4,0]);
+      expect(play.winner).to.be.false;
+      done();
+    });
+  });
 });
