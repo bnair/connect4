@@ -6,6 +6,12 @@ var math   = require('mathjs');
 describe('Connect4', () => {
   var board;
 
+  let fill = (points, val) => {
+    points.forEach((point) => {
+      board.set(point, val);
+    });
+  };
+
   // before each test create an empty board
   beforeEach((done) => {
     board = math.zeros(6,7);
@@ -21,29 +27,37 @@ describe('Connect4', () => {
     });
 
     it('should return a winner when [0,0] to [3,3] are filled', (done) => {
-      board.set([0,0], 1);
-      board.set([1,1], 1);
-      board.set([2,2], 1);
+      fill([[0,0],[1,1],[2,2]], 1);
       let play = c4.play_bruteforce(board, [3,3]);
       expect(play.winner).to.be.true;
       done();
-    })
+    });
+
+    it('should return no winner when [0,0] to [2,2] and [4,4] are filled', (done) => {
+      fill([[0,0],[1,1],[2,2]], 1);
+      let play = c4.play_bruteforce(board, [4,4]);
+      expect(play.winner).to.be.false;
+      done();
+    });
+
+    it('should return a winner when [2,2] to [5,5] are filled', (done) => {
+      fill([[2,2],[3,3],[4,4]], 1);
+      let play = c4.play_bruteforce(board, [5,5]);
+      expect(play.winner).to.be.true;
+      done();
+    });
   });
 
   describe('test horizontals', () => {
     it('should return a winner when [0,0] to [0,3] are filled', (done) => {
-      board.set([0,0], 1);
-      board.set([0,1], 1);
-      board.set([0,2], 1);
+      fill([[0,0],[0,1],[0,2]], 1);
       let play = c4.play_bruteforce(board, [0,3]);
       expect(play.winner).to.be.true;
       done();
     });
 
     it('should return no winner when [0,0] to [0,2] and [0,4] are filled', (done) => {
-      board.set([0,0], 1);
-      board.set([0,1], 1);
-      board.set([0,2], 1);
+      fill([[0,0],[0,1],[0,2]], 1);
       let play = c4.play_bruteforce(board, [0,4]);
       expect(play.winner).to.be.false;
       done();
