@@ -36,10 +36,6 @@ let columns = [
   new Array([0,6], [1,6], [2,6], [3,6], [4,6], [5,6])
 ];
 
-var newBoard = () => {
-  return Array.from(Array(6), () => {return new Array(7).fill(0);} );
-}
-
 // calculate the score along a diagonal, row or column
 // and determine if the player has made a winning move
 let isWinner = (board, vector) => {
